@@ -1,147 +1,65 @@
-# FastAPI Contacts Management API
+# 🧠 FastAPI + PostgreSQL App
 
-## 🚀 Overview
-This project is a **FastAPI-based REST API** that allows users to manage their contacts. It includes authentication, email verification, JWT authorization, rate limiting, and avatar uploading via Cloudinary.
+This is a web application built with FastAPI and PostgreSQL, fully containerized using Docker Compose. It supports hot-reloading for development and follows a modular structure for scalability.
 
-## 📌 Features
-- **User Authentication & Authorization** (JWT-based)
-- **User Registration with Email Verification**
-- **CRUD Operations for Contacts**
-- **User Rate Limiting** (SlowAPI)
-- **CORS Support**
-- **Cloudinary Integration for Avatar Uploads**
-- **Docker & PostgreSQL Support**
+## 🚀 Tech Stack
 
-## 🛠 Tech Stack
-- **Python 3.11**
-- **FastAPI**
-- **SQLAlchemy** (PostgreSQL)
-- **JWT (PyJWT & OAuth2)**
-- **Passlib (Password Hashing)**
-- **Cloudinary (Image Uploads)**
-- **Docker & Docker Compose**
-- **SlowAPI (Rate Limiting)**
+- FastAPI – modern, high-performance web framework for APIs
+- PostgreSQL – relational database
+- Docker & Docker Compose – containerized development
+- SQLAlchemy – ORM for database interactions
+- Pydantic – data validation and serialization
 
-## 🔧 Installation & Setup
+## ⚙️ Setup Instructions
 
-### 1️⃣ **Clone the Repository**
-```bash
-git clone https://github.com/yourusername/fastapi-contacts.git
-cd fastapi-contacts
-```
+1. Clone the repository
 
-### 2️⃣ **Create a Virtual Environment & Install Dependencies**
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-pip install -r requirements.txt
-```
+git clone https://github.com/AnastasiaRiabova/goit-pythonweb-hw-10
+cd goit-pythonweb-hw-10
 
-### 3️⃣ **Set Up Environment Variables**
-Create a `.env` file and add:
-```env
-SECRET_KEY=your_secret_key
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-DATABASE_URL=postgresql://postgres:mysecretpassword@localhost:5432/fastapi_db
-SMTP_SERVER=smtp.gmail.com
-SMTP_PORT=587
-SMTP_EMAIL=your_email@gmail.com
-SMTP_PASSWORD=your_app_password
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-```
+2. Configure environment variables
 
-### 4️⃣ **Run with Docker Compose**
-```bash
+Copy the example environment file:
+
+cp .env.example .env
+
+Then edit .env with your values:
+
+SECRET_KEY=
+DATABASE_URL=
+CLOUDINARY_URL=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+ALGORITHM=
+ACCESS_TOKEN_EXPIRE_MINUTES=
+SMTP_SERVER=
+SMTP_PORT=
+SMTP_EMAIL=
+SMTP_PASSWORD=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
+
+3. Run the project
+
 docker-compose up --build
-```
 
-### 5️⃣ **Run PostgreSQL Locally (without Docker Compose)**
-If using Docker manually, run:
-```bash
-docker run --name fastapi_db -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-```
-Or start an existing container:
-```bash
-docker start fastapi_db
-```
+The API will be available at: http://localhost:8000
 
-### 6️⃣ **Run FastAPI Server**
-```bash
-uvicorn main:app --reload
-```
-The API will be available at: `http://127.0.0.1:8000`
+## 📫 API Endpoints
 
-### 7️⃣ **Useful Docker Commands**
-#### Check running containers:
-```bash
-docker ps
-```
-#### Stop all containers:
-```bash
-docker-compose down
-```
-#### Restart the application:
-```bash
-docker-compose restart
-```
-#### View logs:
-```bash
-docker-compose logs -f
-```
-#### Remove all containers and volumes:
-```bash
-docker-compose down -v
-```
+FastAPI provides built-in interactive documentation:
 
-## 📜 API Documentation
-**Swagger UI:**
-```
-http://127.0.0.1:8000/docs
-```
-**ReDoc:**
-```
-http://127.0.0.1:8000/redoc
-```
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
 
-## 🔑 Authentication
-1️⃣ **Register a new user:**
-```http
-POST /register/
-```
-2️⃣ **Verify email:**
-```http
-GET /verify/{token}
-```
-3️⃣ **Login to get JWT token:**
-```http
-POST /token
-```
-4️⃣ **Authorize in Swagger UI:**
-- Click **Authorize** button.
-- Enter: `Bearer <your_access_token>`.
+If you'd like a written list of endpoints with request/response examples, I can auto-generate that for you — just say the word!
 
-## 📞 Contact Management
-- **Create Contact:** `POST /contacts/`
-- **Get Contacts:** `GET /contacts/`
-- **Get Contact by ID:** `GET /contacts/{contact_id}`
-- **Update Contact:** `PUT /contacts/{contact_id}`
-- **Delete Contact:** `DELETE /contacts/{contact_id}`
+## 🧪 Testing
 
-## 🖼️ Upload Avatar
-- **Upload Avatar:** `PUT /users/avatar/`
-- File should be uploaded in **multipart/form-data** format.
+Tests are not yet included, but the structure supports easy integration using pytest.
 
-## 🏗️ Project Structure
-```
-📁 fastapi-contacts/
-│-- 📄 main.py          # Main FastAPI Application
-│-- 📄 database.py      # Database Configuration
-│-- 📄 models.py        # SQLAlchemy Models
-│-- 📄 schemas.py       # Pydantic Schemas
-│-- 📄 requirements.txt # Dependencies
-│-- 📄 .env             # Environment Variables
-│-- 📄 Dockerfile       # Docker Setup
-│-- 📄 docker-compose.yml # Docker Compose Setup
-```
+## 📄 License
+
+MIT License — free to use, modify, and distribute.
